@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
@@ -16,6 +17,12 @@ def handle_message(msg):
     print(f"Mensagem recebida: {msg}")
     emit('message', msg, broadcast=True)
 
-
+@socketio.on('message')
+def handle_message(msg):
+    timestamp = datetime.now().strftime('%H:%M:%S')
+    formatted_msg = f"[{timestamp}] {msg}"
+    print(f"Mensagem recebida: {formatted_msg}")
+    emit('message', formatted_msg, broadcast=True)
+    
 if __name__ == '__main__':
     socketio.run(app, debug=True)

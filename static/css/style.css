@@ -6,48 +6,62 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Cor de fundo do body */
-    position: relative;
+    background-color: #f0f0f0;
+    position: relative; /* Definir um contexto de posicionamento para os elementos */
 }
 
 header {
     text-align: center;
-    background-color: #4CAF50; 
+    background-color: #007bff; 
     color: white; 
     padding: 20px;
-    position: absolute; 
-    top: 0;
-    width: 100%;
-    z-index: 10;
+    position: absolute; /* Coloca o cabeçalho em uma posição absoluta */
+    top: 0; /* Coloca o cabeçalho no topo */
+    width: 100%; /* Faz com que o cabeçalho ocupe toda a largura da tela */
+    z-index: 10; /* Garante que o cabeçalho fique acima dos outros elementos */
+}
+
+.container {
+    text-align: left;
+    background-color: #f9f9f9;
+    height: 400px;
+    width: 300px;
+    padding: 40px;
+    border: 5px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+/* Estilizar a lista de mensagens */
+#messages {
+    list-style-type: none;
+    max-height: 300px;
+    text-align: left;
+    overflow-y: scroll;
+    
+    background-color: #f9f9f9;
+
 }
 
 #titulo {
     font-family: Arial, sans-serif;
     font-size: 3em;
-    margin: 0;
-}
-
-#messages {
-    list-style-type: none;
-    padding: 0;
-    width: 300px;
-    max-height: 300px;
-    overflow-y: auto;
-    border: 40px solid #000000;
-    background-color: #ffffff; /* Cor de fundo específica para a caixa de mensagens */
-    border-radius: 5px;
-    margin-top: 100px; /* Espaçamento para não sobrepor o cabeçalho */
+    margin: 0; 
 }
 
 #messages li {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    text-align: left;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 #messages li:last-child {
     border-bottom: none;
 }
 
+/* Estilizar o formulário */
 #form {
     display: flex;
     width: 300px;
@@ -61,6 +75,7 @@ header {
     outline: none;
 }
 
+/* Estilizar o botão */
 .btn {
     background-color: #007bff;
     color: #fff;
