@@ -23,16 +23,34 @@
         <script>
             var socket = io.connect('http://' + document.domain + ':' + location.port);
 
+            // Pede ao usuário seu username 
+            var username = prompt("Digite seu nome para entrar no chat:");
+            socket.emit('register', username);
+
             socket.on('message', function(msg) {
                 var ul = document.getElementById('messages');
                 var li = document.createElement('li');
                 li.appendChild(document.createTextNode(msg));
+                li.classList.add('received');
                 ul.appendChild(li);
+                ul.scrollTop = ul.scrollHeight;
             });
 
+            // Enviar mensagem
             document.getElementById('form').onsubmit = function() {
-                socket.emit('message', document.getElementById('input').value);
-                document.getElementById('input').value = '';
+                var input = document.getElementById('input');
+                var msg = input.value;
+                socket.emit('message', msg);
+
+                // Adiciona a mensagem enviada à lista
+                var ul = document.getElementById('messages');
+                var li = document.createElement('li');
+                li.appendChild(document.createTextNode(msg));
+                li.classList.add('sent'); // Adiciona classe para mensagens enviadas
+                ul.appendChild(li);
+                ul.scrollTop = ul.scrollHeight; // Rolagem automática para a última mensagem
+
+                input.value = '';
                 return false;
             };
        </script>
